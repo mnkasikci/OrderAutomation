@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderAutomation.FormDbHelper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,16 +42,34 @@ namespace OrderAutomation
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+            var rowId = dataGridView1.Rows.Add();//datagridviewe yeni satır ekler
 
-            dataGridView1.Rows.Add();//datagridviewe yeni satır ekler
+
+            var columns = new DataGridViewColumn[]
+            {
+                new DataGridViewColumn{Visible = false, Name = "ID"},
+                new DataGridViewColumn{HeaderText = "Urun Adi"},
+                new DataGridViewColumn{HeaderText = "Birim Fiyat"}
+            };
+            
             //sıfır indisli satıra yani birinci satıra veri ekler
-            dataGridView1.Rows[0].Cells[0].Value = 1;
-            dataGridView1.Rows[0].Cells[1].Value = "pantalon";
-            dataGridView1.Rows[0].Cells[2].Value = "100";
-            //bir indisli satıra yani ikinci satıra veri ekler
-            dataGridView1.Rows[1].Cells[0].Value = 2;
-            dataGridView1.Rows[1].Cells[1].Value = "saat";
-            dataGridView1.Rows[1].Cells[2].Value = "10";
+            dataGridView1.SetColumns(columns);
+            dataGridView1.LoadItemsFromDb();
+
+
+            //dataGridView1.Columns[0].Visible = false;
+            //dataGridView1.Columns[1].HeaderText = "Urun Adi";
+            //dataGridView1.Columns[2].HeaderText = "Birim Fiyat";
+
+            ////dataGridView1.Cells[0].Value = 1;
+            //dataGridView1.Rows[0].Cells[1].Value = "pantalon";
+            //dataGridView1.Rows[0].Cells[2].Value = "100";
+
+            ////bir indisli satıra yani ikinci satıra veri ekler
+            //dataGridView1.Rows[1].Cells[0].Value = 2;
+            //dataGridView1.Rows[1].Cells[1].Value = "saat";
+            //dataGridView1.Rows[1].Cells[2].Value = "10";
         }
 
         private void button2_Click(object sender, EventArgs e)
