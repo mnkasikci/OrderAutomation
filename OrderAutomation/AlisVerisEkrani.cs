@@ -52,5 +52,18 @@ namespace OrderAutomation
             dataGridView1.Rows[1].Cells[1].Value = "saat";
             dataGridView1.Rows[1].Cells[2].Value = "10";
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
+            ToplamFiyat = VergisizToplamFiyat = 0;
+            labelkdvsiz.Text = VergisizToplamFiyat.ToString();
+            labelkdvli.Text = ToplamFiyat.ToString();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
