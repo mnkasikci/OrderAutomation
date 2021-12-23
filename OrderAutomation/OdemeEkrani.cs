@@ -41,7 +41,13 @@ namespace OrderAutomation
 
         private void nakitButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Nakit Ödeme Gerçekleşti","Başlık",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Nakit Ödeme Gerçekleşti","Başarılı",MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void creditCardButton_Click(object sender, EventArgs e)
+        {
+            var x = new KrediKarti();
+            x.Show();
         }
     }
 }

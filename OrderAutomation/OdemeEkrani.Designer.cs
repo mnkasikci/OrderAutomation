@@ -99,6 +99,7 @@ namespace OrderAutomation
             this.creditCardButton.TabIndex = 3;
             this.creditCardButton.Text = "Kredi Kartı";
             this.creditCardButton.UseVisualStyleBackColor = true;
+            this.creditCardButton.Click += new System.EventHandler(this.creditCardButton_Click);
             // 
             // chequeButton
             // 
