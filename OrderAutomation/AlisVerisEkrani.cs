@@ -21,23 +21,26 @@ namespace OrderAutomation
         public decimal VergisizToplamFiyat;
         private void button1_Click(object sender, EventArgs e)
         {
+            if (comboBox1.Text!="")
+            {
 
-            shophingclass shp = new shophingclass();
-            
-            int secilensatir = dataGridView1.SelectedCells[0].RowIndex;
 
-            //datagriden çek
-            decimal SecilenUrunFiyat = Convert.ToDecimal(dataGridView1.Rows[secilensatir].Cells[2].Value);
-            string SecilenUrun = dataGridView1.Rows[secilensatir].Cells[1].Value.ToString();
-            int UrunAdet = Convert.ToInt16(comboBox1.SelectedItem);
-            shp.ShoppingTaxfreePrice = SecilenUrunFiyat;
-            shp.CalcTax();
-            ToplamFiyat += shp.ShoppingTaxwithPrice*UrunAdet;
-            VergisizToplamFiyat += shp.ShoppingTaxfreePrice * UrunAdet;
-            listBox1.Items.Add(UrunAdet + "*" + SecilenUrun );
-            labelkdvsiz.Text = VergisizToplamFiyat.ToString();
-            labelkdvli.Text = ToplamFiyat.ToString();
+                shophingclass shp = new shophingclass();
 
+                int secilensatir = dataGridView1.SelectedCells[0].RowIndex;
+
+                //datagriden çek
+                decimal SecilenUrunFiyat = Convert.ToDecimal(dataGridView1.Rows[secilensatir].Cells[2].Value);
+                string SecilenUrun = dataGridView1.Rows[secilensatir].Cells[1].Value.ToString();
+                int UrunAdet = Convert.ToInt16(comboBox1.SelectedItem);
+                shp.ShoppingTaxfreePrice = SecilenUrunFiyat;
+                shp.CalcTax();
+                ToplamFiyat += shp.ShoppingTaxwithPrice * UrunAdet;
+                VergisizToplamFiyat += shp.ShoppingTaxfreePrice * UrunAdet;
+                listBox1.Items.Add(UrunAdet + "*" + SecilenUrun);
+                labelkdvsiz.Text = VergisizToplamFiyat.ToString();
+                labelkdvli.Text = ToplamFiyat.ToString();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
