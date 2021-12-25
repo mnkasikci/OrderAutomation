@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     public partial class OdemeEkrani : Form
     {
@@ -20,16 +20,12 @@ namespace OrderAutomation
         public OdemeEkrani(Customer customer, OrderDetail order) 
         {
             InitializeComponent();
-            VergisizToplamBedel.Text = order.CalcSubTotal().ToString();
+            var amount = order.CalcSubTotal();
+            VergisizToplamBedel.Text = amount.ToString();
+            toplamBedel.Text = (amount * 1.18M).ToString();
             _orderDetail = order;
             _customer = customer;
             _order = new Order(_orderDetail, DateTime.Now, _customer);
-
-        }
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
 
         }
 
@@ -45,12 +41,19 @@ namespace OrderAutomation
 
         private void nakitButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Nakit Ödeme Gerçekleşti","Başarılı",MessageBoxButtons.OK, MessageBoxIcon.Information);
+            var x = new NakitOdeme(_order);
+            x.Show();
         }
 
         private void creditCardButton_Click(object sender, EventArgs e)
         {
             var x = new KrediKarti(_order);
+            x.Show();
+        }
+
+        private void checkButton_Click(object sender, EventArgs e)
+        {
+            var x = new CekOdeme(_order);
             x.Show();
         }
     }

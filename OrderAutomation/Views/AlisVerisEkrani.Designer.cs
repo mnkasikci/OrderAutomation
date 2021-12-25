@@ -1,5 +1,5 @@
 ﻿
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     partial class AlisVerisEkrani
     {

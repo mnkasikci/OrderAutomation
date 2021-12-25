@@ -2,19 +2,18 @@
 using System;
 using System.Windows.Forms;
 
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     public partial class KrediKarti : Form
     {
-        Credit credit;
         public KrediKarti(Order order)
         {
             
             InitializeComponent();
-            new Credit(order);
             button1.Enabled = false;
             HataIkon.Hide();
             formataUygunDegilText.Hide();
+            _order = order;
         }
 
         bool AdSoyadGecerli = false;
@@ -22,6 +21,7 @@ namespace OrderAutomation
         bool CVCGecerli = false;
         bool SKTAYGecerli = false;
         bool SKTYilGecerli = false;
+        private readonly Order _order;
 
         private void kartNoTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -80,13 +80,15 @@ namespace OrderAutomation
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var expDateString = comboBox1.SelectedValue.ToString() + comboBox2.SelectedValue.ToString();
+            Credit credit = new Credit(_order, kartNoTextBox.ToString(), adSoyad.ToString(), expDateString);
             credit.ProcessPayment();
             MessageBox.Show("Kredi Kartı ile Ödeme Gerçekleşti", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void textBox2_Leave(object sender, EventArgs e)
         {
-            AdSoyadGecerli = textBox2.Text != "";
+            AdSoyadGecerli = adSoyad.Text != "";
             UpdateButtonEnabled();
         }
 

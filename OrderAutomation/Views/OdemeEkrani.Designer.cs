@@ -1,5 +1,5 @@
 ﻿
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     partial class OdemeEkrani
     {
@@ -35,7 +35,7 @@ namespace OrderAutomation
             this.VergisizToplamBedel = new System.Windows.Forms.Label();
             this.nakitButton = new System.Windows.Forms.Button();
             this.creditCardButton = new System.Windows.Forms.Button();
-            this.chequeButton = new System.Windows.Forms.Button();
+            this.checkButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // toplamBedelEtiketi
@@ -47,7 +47,6 @@ namespace OrderAutomation
             this.toplamBedelEtiketi.Size = new System.Drawing.Size(159, 32);
             this.toplamBedelEtiketi.TabIndex = 0;
             this.toplamBedelEtiketi.Text = "Toplam Bedel";
-            this.toplamBedelEtiketi.Click += new System.EventHandler(this.label1_Click);
             // 
             // toplamBedel
             // 
@@ -58,7 +57,6 @@ namespace OrderAutomation
             this.toplamBedel.Size = new System.Drawing.Size(27, 32);
             this.toplamBedel.TabIndex = 0;
             this.toplamBedel.Text = "0";
-            this.toplamBedel.Click += new System.EventHandler(this.label1_Click);
             // 
             // VergisizToplamBedelEtiketi
             // 
@@ -101,21 +99,22 @@ namespace OrderAutomation
             this.creditCardButton.UseVisualStyleBackColor = true;
             this.creditCardButton.Click += new System.EventHandler(this.creditCardButton_Click);
             // 
-            // chequeButton
+            // checkButton
             // 
-            this.chequeButton.Location = new System.Drawing.Point(510, 303);
-            this.chequeButton.Name = "chequeButton";
-            this.chequeButton.Size = new System.Drawing.Size(161, 39);
-            this.chequeButton.TabIndex = 3;
-            this.chequeButton.Text = "Çek";
-            this.chequeButton.UseVisualStyleBackColor = true;
+            this.checkButton.Location = new System.Drawing.Point(510, 303);
+            this.checkButton.Name = "checkButton";
+            this.checkButton.Size = new System.Drawing.Size(161, 39);
+            this.checkButton.TabIndex = 3;
+            this.checkButton.Text = "Çek";
+            this.checkButton.UseVisualStyleBackColor = true;
+            this.checkButton.Click += new System.EventHandler(this.checkButton_Click);
             // 
             // OdemeEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.chequeButton);
+            this.Controls.Add(this.checkButton);
             this.Controls.Add(this.creditCardButton);
             this.Controls.Add(this.nakitButton);
             this.Controls.Add(this.VergisizToplamBedel);
@@ -138,6 +137,6 @@ namespace OrderAutomation
         private System.Windows.Forms.Label VergisizToplamBedel;
         private System.Windows.Forms.Button nakitButton;
         private System.Windows.Forms.Button creditCardButton;
-        private System.Windows.Forms.Button chequeButton;
+        private System.Windows.Forms.Button checkButton;
     }
 }

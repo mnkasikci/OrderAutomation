@@ -1,5 +1,5 @@
 ﻿
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     partial class KrediKarti
     {
@@ -34,7 +34,7 @@ namespace OrderAutomation
             this.kartNoTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.adSoyad = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -76,13 +76,13 @@ namespace OrderAutomation
             this.label2.TabIndex = 1;
             this.label2.Text = "Ad Soyad";
             // 
-            // textBox2
+            // adSoyad
             // 
-            this.textBox2.Location = new System.Drawing.Point(150, 25);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(330, 23);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
+            this.adSoyad.Location = new System.Drawing.Point(150, 25);
+            this.adSoyad.Name = "adSoyad";
+            this.adSoyad.Size = new System.Drawing.Size(330, 23);
+            this.adSoyad.TabIndex = 0;
+            this.adSoyad.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
             // textBox3
             // 
@@ -211,7 +211,7 @@ namespace OrderAutomation
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.adSoyad);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.kartNoTextBox);
             this.Name = "KrediKarti";
@@ -226,7 +226,7 @@ namespace OrderAutomation
         private System.Windows.Forms.TextBox kartNoTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox adSoyad;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

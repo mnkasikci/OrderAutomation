@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using OrderAutomation.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -36,30 +37,23 @@ namespace OrderAutomation.DB
 
             using (IDbConnection db = new SqlConnection(DBConnection.STR))
             {
-                order.Id = db.QueryFirst(sp, dp, commandType: CommandType.StoredProcedure);
+                order.Id = db.QueryFirst<int>(sp, dp, commandType: CommandType.StoredProcedure);
             }
         }
 
         private static DataTable AddItems(IEnumerable<Item> orderItems)
         {
             DataTable table = new();
-            var properties = typeof(Item).GetProperties();
 
-            foreach (var item in properties)
-            {
-                table.Columns.Add(item.Name, item.PropertyType);
-            }
-
+            table.Columns.Add("Id",typeof(int));
+            table.Columns.Add("Quantity",typeof(int));
+            
             foreach (var item in orderItems)
             {
                 var parameters = new List<object>();
-                var valueProperties = item.GetType().GetRuntimeProperties();
-                foreach (var prop in valueProperties)
-                {
-                    var p = prop.GetValue(item);
-                    parameters.Add(p);
-                }
-                table.Rows.Add(parameters.AsList());
+                parameters.Add(item.Id);
+                parameters.Add(item.Quantity);
+                table.Rows.Add(parameters.ToArray());
             }
             return table;
         }

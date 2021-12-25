@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     public partial class AlisVerisEkrani : Form
     {
@@ -78,7 +78,7 @@ namespace OrderAutomation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            OdemeEkrani x = new OdemeEkrani(_customer, _orderDetail);
+            OdemeEkrani x = new (_customer, _orderDetail);
             x.Show();
         }
 

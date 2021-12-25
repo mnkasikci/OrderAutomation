@@ -19,12 +19,15 @@ namespace OrderAutomation.Models
     }
     public class Credit : Payment
     {
-        public string CardNumber;
-        public string NameOnCard;
-        public string ExpDate;
+        public string CardNumber { get; set; }
+        public string NameOnCard { get; set; }
+        public string ExpDate { get; set; }
 
-        public Credit(Order order) : base( order)
+        public Credit(Order order,string cardNumber,string nameOnCard,string expDate) : base( order)
         {
+            CardNumber = cardNumber;
+            NameOnCard = nameOnCard;
+            ExpDate = expDate;
         }
 
         public new void ProcessPayment()
@@ -35,10 +38,11 @@ namespace OrderAutomation.Models
     }
     public class Cash : Payment
     {
-        public decimal CashTendered;
+        public decimal CashTendered { get; set; }
 
-        public Cash(Order order) : base( order)
+        public Cash(Order order,decimal cashTendered) : base( order)
         {
+            CashTendered = cashTendered;
         }
 
         public decimal Change => CashTendered - this.Order.CalcTotal();
@@ -51,11 +55,14 @@ namespace OrderAutomation.Models
     }
     public class Check : Payment
     {
-        public string Name;
-        public string BankId;
+        public string Name { get; set; }
+        public string BankId { get; set; }
 
-        public Check(Order order) : base( order)
+
+        public Check(Order order,string name,string bankId) : base( order)
         {
+            Name = name;
+            BankId = bankId;
         }
 
         public new void ProcessPayment()

@@ -8,12 +8,17 @@ namespace OrderAutomation.Models
 {
     public class Item
     {
-        public int Id;
-        public string Name;
-        public decimal Price;
-        public string Description;
-        public decimal Weight;
-        public int Quantity;
+        public int Id { get; set; }
+
+        public string Name { get; set; }        
+
+        public decimal Price { get; set; }   
+
+        public string Description { get; set; } 
+
+        public decimal Weight { get; set; }
+
+        public int Quantity { get; set; }
 
     }
 }

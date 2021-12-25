@@ -3,7 +3,7 @@ using OrderAutomation.Models;
 using System;
 using System.Windows.Forms;
 
-namespace OrderAutomation
+namespace OrderAutomation.Views
 {
     public partial class LoginForm : Form
     {
@@ -40,7 +40,10 @@ namespace OrderAutomation
 
         private User AttemptLogin(string userName, string password)
         {
-            return new Customer();
+            return new Customer()
+            {
+                Id = 2
+            };
         }
         private UserType GetKullaniciTipi(string text)
         {

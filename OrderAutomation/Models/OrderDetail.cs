@@ -8,7 +8,7 @@ namespace OrderAutomation.Models
 {
     public class OrderDetail
     {
-        public List<Item> Items = new ();
+        public List<Item> Items { get; set; } = new();
         public decimal CalcSubTotal()
         {
             decimal total = 0;

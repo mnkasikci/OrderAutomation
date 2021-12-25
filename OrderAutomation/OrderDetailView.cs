@@ -10,10 +10,6 @@ namespace OrderAutomation
 {
    public class OrderDetailView : OrderDetail
     {
-        public OrderDetailView()
-        {
-            Items = new();
-        }
         internal void AddItemView(int urunAdet, Item itemView)
         {
             if (!Items.Exists(x => x.Id == itemView.Id))
