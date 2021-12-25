@@ -18,10 +18,10 @@ namespace OrderAutomation
                 var x = GetKullaniciTipi(kullaniciAdi.Text);
                 switch (x)
                 {
-                    case KullaniciTipi.Admin:
+                    case UserType.Admin:
 
                         break;
-                    case KullaniciTipi.Musteri:
+                    case UserType.Musteri:
                         this.Hide();
                         var avEkrani = new AlisVerisEkrani();
                         avEkrani.Closed += (s, args) => this.Close();
@@ -35,9 +35,9 @@ namespace OrderAutomation
         {
             return true;
         }
-        private KullaniciTipi GetKullaniciTipi(string text)
+        private UserType GetKullaniciTipi(string text)
         {
-            return KullaniciTipi.Musteri;
+            return UserType.Musteri;
         }
     }
 }

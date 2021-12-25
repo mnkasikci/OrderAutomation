@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace OrderAutomation.Global
 {
-    public enum KullaniciTipi
+    public enum UserType
     {
         Admin = 1,
         Musteri = 2
+    }
+    public enum OrderStatus
+    {
+        BeingProcessed = 1,
+        Completed = 2
     }
     public static class Globals
     {

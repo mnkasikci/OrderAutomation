@@ -26,8 +26,8 @@ namespace OrderAutomation.FormDbHelper
             foreach (var item in dbResult)
             {
                 gridView.Rows[row].Cells[0].Value = item.Id;
-                gridView.Rows[row].Cells[1].Value = item.UrunAdi;
-                gridView.Rows[row].Cells[2].Value = item.UrunFiyati;
+                gridView.Rows[row].Cells[1].Value = item.Name;
+                gridView.Rows[row].Cells[2].Value = item.Price;
                 row++;
             }
         }
