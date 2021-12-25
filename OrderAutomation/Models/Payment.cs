@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderAutomation.DB;
+using System;
 
 namespace OrderAutomation.Models
 {
@@ -6,14 +7,16 @@ namespace OrderAutomation.Models
     {
         public Payment(Order order)
         {
-
             Order = order;
-            Amount = Order.CalcTotal;
         }
 
         public Order Order;
-        public decimal Amount;
-        public abstract void ProcessPayment();
+        public void ProcessPayment()
+        {
+            Order.Status = Global.OrderStatus.Completed;
+            DBHelper.SaveOrder(Order);
+        }
+        
     }
     public class Credit : Payment
     {
@@ -25,9 +28,10 @@ namespace OrderAutomation.Models
         {
         }
 
-        public override void ProcessPayment()
+        public new void ProcessPayment()
         {
-            throw new NotImplementedException();
+            base.ProcessPayment();
+            DBHelper.SavePayment(this);
         }
     }
     public class Cash : Payment
@@ -38,11 +42,12 @@ namespace OrderAutomation.Models
         {
         }
 
-        public decimal Change => CashTendered - Amount;
+        public decimal Change => CashTendered - this.Order.CalcTotal();
 
-        public override void ProcessPayment()
+        public new void ProcessPayment()
         {
-            throw new NotImplementedException();
+            base.ProcessPayment();
+            DBHelper.SavePayment(this);
         }
     }
     public class Check : Payment
@@ -54,9 +59,10 @@ namespace OrderAutomation.Models
         {
         }
 
-        public override void ProcessPayment()
+        public new void ProcessPayment()
         {
-            throw new NotImplementedException();
+            base.ProcessPayment();
+            DBHelper.SavePayment(this);
         }
     }
 

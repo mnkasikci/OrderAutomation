@@ -16,9 +16,10 @@ namespace OrderAutomation.Models
         public OrderStatus Status;
         public OrderDetail OrderDetail;
         public Customer Customer;
+        public int OrderId;
 
         public decimal CalcTax() => OrderDetail.CalcSubTotal() * 0.18M;
-        public decimal CalcTotal => OrderDetail.CalcSubTotal() + CalcTax();
+        public decimal CalcTotal() => OrderDetail.CalcSubTotal() + CalcTax();
 
     }
 }

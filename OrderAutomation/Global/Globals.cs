@@ -16,6 +16,12 @@ namespace OrderAutomation.Global
         BeingProcessed = 1,
         Completed = 2
     }
+    public enum PaymentType
+    {
+        CreditCard = 1,
+        Cash = 2,
+        Check = 3
+    }
     public static class Globals
     {
     }

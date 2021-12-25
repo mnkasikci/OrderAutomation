@@ -6,12 +6,12 @@ namespace OrderAutomation
 {
     public partial class KrediKarti : Form
     {
-        
+        Credit credit;
         public KrediKarti(Order order)
         {
             
             InitializeComponent();
-            var credit = new Credit(order);
+            new Credit(order);
             button1.Enabled = false;
             HataIkon.Hide();
             formataUygunDegilText.Hide();
@@ -80,6 +80,7 @@ namespace OrderAutomation
 
         private void button1_Click(object sender, EventArgs e)
         {
+            credit.ProcessPayment();
             MessageBox.Show("Kredi Kartı ile Ödeme Gerçekleşti", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
