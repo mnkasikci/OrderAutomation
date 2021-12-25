@@ -42,7 +42,7 @@ namespace OrderAutomation
             }
             else
             {
-                formataUygunDegilText.Show();
+                formataUygunDegilText.Hide();
                 HataIkon.Hide();
                 KartNoGecerli = true;
                 UpdateButtonEnabled();

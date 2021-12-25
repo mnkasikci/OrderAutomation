@@ -1,4 +1,5 @@
 ﻿using OrderAutomation.Global;
+using OrderAutomation.Models;
 using System;
 using System.Windows.Forms;
 
@@ -13,31 +14,37 @@ namespace OrderAutomation
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if(LoginGecerli(kullaniciAdi.Text,sifre.Text))
+            var user = AttemptLogin(kullaniciAdi.Text, sifre.Text);
+            if (user != null)
             {
-                var x = GetKullaniciTipi(kullaniciAdi.Text);
-                switch (x)
+                Customer customer = user as Customer;
+                Admin admin = user as Admin;
+                if (customer != null)
                 {
-                    case UserType.Admin:
-
-                        break;
-                    case UserType.Musteri:
-                        this.Hide();
-                        var avEkrani = new AlisVerisEkrani();
-                        avEkrani.Closed += (s, args) => this.Close();
-                        avEkrani.Show();
-                        break;
+                    this.Hide();
+                    var avEkrani = new AlisVerisEkrani(customer);
+                    avEkrani.Closed += (s, args) => this.Close();
+                    avEkrani.Show();
                 }
+                else if(admin != null)
+                {
+
+                }
+                else
+                {
+                    throw new TypeUnloadedException();
+                }
+
             }
         }
 
-        private bool LoginGecerli(string userName,string password)
+        private User AttemptLogin(string userName, string password)
         {
-            return true;
+            return new Customer();
         }
         private UserType GetKullaniciTipi(string text)
         {
-            return UserType.Musteri;
+            return UserType.Customer;
         }
     }
 }

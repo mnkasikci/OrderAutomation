@@ -9,7 +9,7 @@ namespace OrderAutomation.Global
     public enum UserType
     {
         Admin = 1,
-        Musteri = 2
+        Customer = 2
     }
     public enum OrderStatus
     {
