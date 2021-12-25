@@ -1,14 +1,24 @@
 ﻿using OrderAutomation.Global;
-using OrderAutomation.Models;
 using System;
-
-public class Order
+namespace OrderAutomation.Models
 {
-    public DateTime Date;
-    public OrderStatus status;
-    public OrderDetail OrderDetail;
 
-    public decimal CalcTax() =>  OrderDetail.CalcSubTotal() * 0.18M;
-    public decimal CalcTotal => OrderDetail.CalcSubTotal() + CalcTax();
+    public class Order
+    {
+        public Order(OrderDetail od, DateTime date,Customer customer)
+        {
+            Customer = customer;
+            OrderDetail = od;
+            Date = date;
+            Status = OrderStatus.BeingProcessed;
+        }
+        public DateTime Date;
+        public OrderStatus Status;
+        public OrderDetail OrderDetail;
+        public Customer Customer;
 
+        public decimal CalcTax() => OrderDetail.CalcSubTotal() * 0.18M;
+        public decimal CalcTotal => OrderDetail.CalcSubTotal() + CalcTax();
+
+    }
 }

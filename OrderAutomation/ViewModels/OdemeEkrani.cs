@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderAutomation.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,15 +13,18 @@ namespace OrderAutomation
 {
     public partial class OdemeEkrani : Form
     {
-        public OdemeEkrani()
+        private readonly OrderDetail _orderDetail;
+        private readonly Customer _customer;
+        private readonly Order _order;
+
+        public OdemeEkrani(Customer customer, OrderDetail order) 
         {
             InitializeComponent();
-        }
-        public OdemeEkrani(decimal toplamFiyat, decimal vergisizToplamFiyat) 
-        {
-            InitializeComponent();
-            toplamBedel.Text = toplamFiyat.ToString();
-            VergisizToplamBedel.Text = vergisizToplamFiyat.ToString();
+            VergisizToplamBedel.Text = order.CalcSubTotal().ToString();
+            _orderDetail = order;
+            _customer = customer;
+            _order = new Order(_orderDetail, DateTime.Now, _customer);
+
         }
 
 
@@ -46,7 +50,7 @@ namespace OrderAutomation
 
         private void creditCardButton_Click(object sender, EventArgs e)
         {
-            var x = new KrediKarti();
+            var x = new KrediKarti(_order);
             x.Show();
         }
     }

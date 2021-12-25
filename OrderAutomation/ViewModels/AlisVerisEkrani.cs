@@ -1,4 +1,5 @@
 ﻿using OrderAutomation.FormDbHelper;
+using OrderAutomation.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,12 +14,17 @@ namespace OrderAutomation
 {
     public partial class AlisVerisEkrani : Form
     {
-        public AlisVerisEkrani()
+        OrderDetail _orderDetail;
+        public AlisVerisEkrani(Customer customer)
         {
             InitializeComponent();
+            _orderDetail = new();
+            _customer = customer;
         }
         public decimal ToplamFiyat = 0;
         public decimal VergisizToplamFiyat;
+        private readonly Customer _customer;
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (comboBox1.Text!="")
@@ -90,7 +96,7 @@ namespace OrderAutomation
 
         private void button3_Click(object sender, EventArgs e)
         {
-            OdemeEkrani x = new OdemeEkrani(ToplamFiyat,VergisizToplamFiyat);
+            OdemeEkrani x = new OdemeEkrani(_customer, _orderDetail);
             x.Show();
         }
     }

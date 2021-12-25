@@ -1,13 +1,17 @@
-﻿using System;
+﻿using OrderAutomation.Models;
+using System;
 using System.Windows.Forms;
 
 namespace OrderAutomation
 {
     public partial class KrediKarti : Form
     {
-        public KrediKarti()
+        
+        public KrediKarti(Order order)
         {
+            
             InitializeComponent();
+            var credit = new Credit(order);
             button1.Enabled = false;
             HataIkon.Hide();
             formataUygunDegilText.Hide();
