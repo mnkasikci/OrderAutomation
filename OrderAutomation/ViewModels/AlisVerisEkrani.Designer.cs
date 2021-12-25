@@ -33,6 +33,9 @@ namespace OrderAutomation
             this.urunID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.urunIsmi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.urunFiyat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Aciklama = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stok = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agirlik = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,35 +58,55 @@ namespace OrderAutomation
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.urunID,
             this.urunIsmi,
-            this.urunFiyat});
+            this.urunFiyat,
+            this.Aciklama,
+            this.stok,
+            this.agirlik});
             this.dataGridView1.Location = new System.Drawing.Point(3, 24);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 29;
-            this.dataGridView1.Size = new System.Drawing.Size(381, 262);
+            this.dataGridView1.Size = new System.Drawing.Size(498, 262);
             this.dataGridView1.TabIndex = 0;
             // 
             // urunID
             // 
-            this.urunID.HeaderText = "urunID";
+            this.urunID.HeaderText = "Id";
             this.urunID.MinimumWidth = 6;
             this.urunID.Name = "urunID";
+            this.urunID.Visible = false;
             this.urunID.Width = 125;
             // 
             // urunIsmi
             // 
-            this.urunIsmi.HeaderText = "urunIsmi";
+            this.urunIsmi.HeaderText = "İsim";
             this.urunIsmi.MinimumWidth = 6;
             this.urunIsmi.Name = "urunIsmi";
-            this.urunIsmi.Width = 125;
             // 
             // urunFiyat
             // 
-            this.urunFiyat.HeaderText = "urunFiyat";
+            this.urunFiyat.HeaderText = "Ürün Fiyatı";
             this.urunFiyat.MinimumWidth = 6;
             this.urunFiyat.Name = "urunFiyat";
-            this.urunFiyat.Width = 125;
+            this.urunFiyat.Width = 50;
+            // 
+            // Aciklama
+            // 
+            this.Aciklama.HeaderText = "Açıklama";
+            this.Aciklama.Name = "Aciklama";
+            this.Aciklama.Width = 95;
+            // 
+            // stok
+            // 
+            this.stok.HeaderText = "Stok Adet";
+            this.stok.Name = "stok";
+            // 
+            // agirlik
+            // 
+            this.agirlik.HeaderText = "Ağırlık";
+            this.agirlik.Name = "agirlik";
+            this.agirlik.ReadOnly = true;
             // 
             // comboBox1
             // 
@@ -96,7 +119,7 @@ namespace OrderAutomation
             "5",
             "6",
             "7"});
-            this.comboBox1.Location = new System.Drawing.Point(388, 214);
+            this.comboBox1.Location = new System.Drawing.Point(525, 201);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(133, 23);
@@ -106,7 +129,7 @@ namespace OrderAutomation
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(536, 234);
+            this.label2.Location = new System.Drawing.Point(673, 221);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(141, 20);
             this.label2.TabIndex = 3;
@@ -123,7 +146,7 @@ namespace OrderAutomation
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(406, 252);
+            this.button1.Location = new System.Drawing.Point(543, 239);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 22);
@@ -136,7 +159,7 @@ namespace OrderAutomation
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(539, 24);
+            this.listBox1.Location = new System.Drawing.Point(667, 11);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(132, 154);
@@ -145,24 +168,22 @@ namespace OrderAutomation
             // labelkdvsiz
             // 
             this.labelkdvsiz.AutoSize = true;
-            this.labelkdvsiz.Location = new System.Drawing.Point(690, 200);
+            this.labelkdvsiz.Location = new System.Drawing.Point(827, 187);
             this.labelkdvsiz.Name = "labelkdvsiz";
-            this.labelkdvsiz.Size = new System.Drawing.Size(30, 15);
+            this.labelkdvsiz.Size = new System.Drawing.Size(0, 15);
             this.labelkdvsiz.TabIndex = 8;
-            this.labelkdvsiz.Text = "fiyat";
             // 
             // labelkdvli
             // 
             this.labelkdvli.AutoSize = true;
-            this.labelkdvli.Location = new System.Drawing.Point(691, 237);
+            this.labelkdvli.Location = new System.Drawing.Point(828, 224);
             this.labelkdvli.Name = "labelkdvli";
-            this.labelkdvli.Size = new System.Drawing.Size(57, 15);
+            this.labelkdvli.Size = new System.Drawing.Size(0, 15);
             this.labelkdvli.TabIndex = 10;
-            this.labelkdvli.Text = "fiyat+kdv";
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(677, 154);
+            this.button2.Location = new System.Drawing.Point(814, 141);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 22);
@@ -175,7 +196,7 @@ namespace OrderAutomation
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(536, 196);
+            this.label6.Location = new System.Drawing.Point(673, 183);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(126, 20);
             this.label6.TabIndex = 12;
@@ -194,7 +215,7 @@ namespace OrderAutomation
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(430, 186);
+            this.label7.Location = new System.Drawing.Point(567, 173);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 20);
             this.label7.TabIndex = 14;
@@ -212,7 +233,7 @@ namespace OrderAutomation
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(536, 279);
+            this.button3.Location = new System.Drawing.Point(673, 266);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(216, 23);
             this.button3.TabIndex = 16;
@@ -225,7 +246,7 @@ namespace OrderAutomation
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.ClientSize = new System.Drawing.Size(797, 338);
+            this.ClientSize = new System.Drawing.Size(913, 338);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label7);
@@ -261,14 +282,17 @@ namespace OrderAutomation
         private System.Windows.Forms.Label labelkdvsiz;
         private System.Windows.Forms.Label labelkdvli;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn urunID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn urunIsmi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn urunFiyat;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urunID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urunIsmi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urunFiyat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Aciklama;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stok;
+        private System.Windows.Forms.DataGridViewTextBoxColumn agirlik;
     }
 }
 

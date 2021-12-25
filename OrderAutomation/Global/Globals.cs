@@ -12,13 +12,4 @@ namespace OrderAutomation.Global
         Customer = 2
     }
   
-    public enum PaymentType
-    {
-        CreditCard = 1,
-        Cash = 2,
-        Check = 3
-    }
-    public static class Globals
-    {
-    }
 }

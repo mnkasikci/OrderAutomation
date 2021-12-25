@@ -14,5 +14,6 @@ namespace OrderAutomation.Models
         public string Description;
         public decimal Weight;
         public int Quantity;
+
     }
 }

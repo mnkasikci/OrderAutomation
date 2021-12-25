@@ -14,15 +14,15 @@ namespace OrderAutomation
 {
     public partial class AlisVerisEkrani : Form
     {
-        OrderDetail _orderDetail;
+        OrderDetailView _orderDetail;
+        List<Item> Items;
         public AlisVerisEkrani(Customer customer)
         {
             InitializeComponent();
-            _orderDetail = new();
             _customer = customer;
+            _orderDetail = new();
         }
-        public decimal ToplamFiyat = 0;
-        public decimal VergisizToplamFiyat;
+        
         private readonly Customer _customer;
 
         private void button1_Click(object sender, EventArgs e)
@@ -30,22 +30,16 @@ namespace OrderAutomation
             if (comboBox1.Text!="")
             {
 
+                int chosenRow = dataGridView1.SelectedCells[0].RowIndex;
+                int quantity = Convert.ToInt16(comboBox1.SelectedItem);
 
-                shophingclass shp = new shophingclass();
+                _orderDetail.AddItemView(quantity, Items[chosenRow]);
+                _orderDetail.ReGenerate(listBox1);
+                decimal subTotal = _orderDetail.CalcSubTotal();
+                labelkdvsiz.Text = subTotal.ToString();
+                labelkdvli.Text = (subTotal * 1.18M).ToString();
 
-                int secilensatir = dataGridView1.SelectedCells[0].RowIndex;
-
-                //datagriden çek
-                decimal SecilenUrunFiyat = Convert.ToDecimal(dataGridView1.Rows[secilensatir].Cells[2].Value);
-                string SecilenUrun = dataGridView1.Rows[secilensatir].Cells[1].Value.ToString();
-                int UrunAdet = Convert.ToInt16(comboBox1.SelectedItem);
-                shp.ShoppingTaxfreePrice = SecilenUrunFiyat;
-                shp.CalcTax();
-                ToplamFiyat += shp.ShoppingTaxwithPrice * UrunAdet;
-                VergisizToplamFiyat += shp.ShoppingTaxfreePrice * UrunAdet;
-                listBox1.Items.Add(UrunAdet + "*" + SecilenUrun);
-                labelkdvsiz.Text = VergisizToplamFiyat.ToString();
-                labelkdvli.Text = ToplamFiyat.ToString();
+                //listBox1.Items.Add(UrunAdet + " * " + SecilenUrun);
             }
         }
 
@@ -59,34 +53,22 @@ namespace OrderAutomation
             {
                 new DataGridViewColumn{Visible = false, Name = "ID"},
                 new DataGridViewColumn{HeaderText = "Urun Adi"},
-                new DataGridViewColumn{HeaderText = "Birim Fiyat"}
+                new DataGridViewColumn{HeaderText = "Birim Fiyat"},
+                new DataGridViewColumn{HeaderText = "Aciklama"},
+                new DataGridViewColumn{HeaderText = "Agirlik"},
+                new DataGridViewColumn{HeaderText = "Stok"}
             };
             
             //sıfır indisli satıra yani birinci satıra veri ekler
             dataGridView1.SetColumns(columns);
-            dataGridView1.LoadItemsFromDb();
-
-
-            //dataGridView1.Columns[0].Visible = false;
-            //dataGridView1.Columns[1].HeaderText = "Urun Adi";
-            //dataGridView1.Columns[2].HeaderText = "Birim Fiyat";
-
-            ////dataGridView1.Cells[0].Value = 1;
-            //dataGridView1.Rows[0].Cells[1].Value = "pantalon";
-            //dataGridView1.Rows[0].Cells[2].Value = "100";
-
-            ////bir indisli satıra yani ikinci satıra veri ekler
-            //dataGridView1.Rows[1].Cells[0].Value = 2;
-            //dataGridView1.Rows[1].Cells[1].Value = "saat";
-            //dataGridView1.Rows[1].Cells[2].Value = "10";
+            Items = dataGridView1.LoadItemsFromDb().ToList();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            ToplamFiyat = VergisizToplamFiyat = 0;
-            labelkdvsiz.Text = VergisizToplamFiyat.ToString();
-            labelkdvli.Text = ToplamFiyat.ToString();
+            _orderDetail.ClearItems();
+            _orderDetail.ReGenerate(listBox1);
+            labelkdvsiz.Text = labelkdvli.Text = "";
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -99,5 +81,6 @@ namespace OrderAutomation
             OdemeEkrani x = new OdemeEkrani(_customer, _orderDetail);
             x.Show();
         }
+
     }
 }

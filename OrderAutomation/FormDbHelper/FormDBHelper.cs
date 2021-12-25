@@ -1,9 +1,6 @@
 ﻿using OrderAutomation.DB;
-using System;
+using OrderAutomation.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OrderAutomation.FormDbHelper
@@ -19,7 +16,7 @@ namespace OrderAutomation.FormDbHelper
                 gridView.Columns[i].Name = columns[i].Name;
             }
         }
-        public static void LoadItemsFromDb(this DataGridView gridView)
+        public static IEnumerable<Item> LoadItemsFromDb (this DataGridView gridView)
         {
             var dbResult = DBHelper.UrunListesiniAl();
             int row = 0;
@@ -28,8 +25,13 @@ namespace OrderAutomation.FormDbHelper
                 gridView.Rows[row].Cells[0].Value = item.Id;
                 gridView.Rows[row].Cells[1].Value = item.Name;
                 gridView.Rows[row].Cells[2].Value = item.Price;
+                gridView.Rows[row].Cells[3].Value = item.Description;
+                gridView.Rows[row].Cells[4].Value = item.Weight;
+                gridView.Rows[row].Cells[5].Value = item.Quantity;
+
                 row++;
             }
+            return dbResult;
         }
     }
 }
