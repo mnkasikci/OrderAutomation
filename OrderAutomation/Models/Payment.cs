@@ -13,7 +13,6 @@ namespace OrderAutomation.Models
         public Order Order;
         public void ProcessPayment()
         {
-            Order.Status = Global.OrderStatus.Completed;
             DBHelper.SaveOrder(Order);
         }
         
@@ -22,7 +21,7 @@ namespace OrderAutomation.Models
     {
         public string CardNumber;
         public string NameOnCard;
-        public DateTime ExpDate;
+        public string ExpDate;
 
         public Credit(Order order) : base( order)
         {

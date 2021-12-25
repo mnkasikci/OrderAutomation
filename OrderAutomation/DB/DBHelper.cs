@@ -28,7 +28,6 @@ namespace OrderAutomation.DB
             dp.Add("Date", order.Date);
             dp.Add("TotalAmount", order.CalcTotal());
             dp.Add("TotalTax", order.CalcTax());
-            dp.Add("OrderStatus", order.Status);
             dp.Add("CustomerId", order.Customer.Id);
             dp.Add("OrderWeight", order.OrderDetail.CalcWeight());
 
@@ -37,7 +36,7 @@ namespace OrderAutomation.DB
 
             using (IDbConnection db = new SqlConnection(DBConnection.STR))
             {
-                order.OrderId = db.QueryFirst(sp, dp, commandType: CommandType.StoredProcedure);
+                order.Id = db.QueryFirst(sp, dp, commandType: CommandType.StoredProcedure);
             }
         }
 
@@ -71,7 +70,7 @@ namespace OrderAutomation.DB
             DynamicParameters dp = new();
             dp.Add("BankId", check.BankId);
             dp.Add("Name", check.Name);
-            dp.Add("OrderId", check.Order.OrderId);
+            dp.Add("Id", check.Order.Id);
 
             using IDbConnection db = new SqlConnection(DBConnection.STR);
             db.Execute(sp, dp, commandType: CommandType.StoredProcedure);
@@ -85,7 +84,7 @@ namespace OrderAutomation.DB
             dp.Add("ExpDate", credit.ExpDate);
             dp.Add("ExpDate", credit.ExpDate);
             dp.Add("NameOnCard", credit.NameOnCard);
-            dp.Add("OrderId", credit.Order.OrderId);
+            dp.Add("Id", credit.Order.Id);
 
             using IDbConnection db = new SqlConnection(DBConnection.STR);
             db.Execute(sp, dp, commandType: CommandType.StoredProcedure);
@@ -96,7 +95,7 @@ namespace OrderAutomation.DB
         {
             var sp = "usp_SaveCashPayment";
             DynamicParameters dp = new();
-            dp.Add("OrderId");
+            dp.Add("Id",cash.Order.Id);
             dp.Add("CashTendered", cash.CashTendered);
             dp.Add("Change", cash.Change);
 

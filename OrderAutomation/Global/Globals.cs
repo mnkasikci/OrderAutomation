@@ -11,11 +11,7 @@ namespace OrderAutomation.Global
         Admin = 1,
         Customer = 2
     }
-    public enum OrderStatus
-    {
-        BeingProcessed = 1,
-        Completed = 2
-    }
+  
     public enum PaymentType
     {
         CreditCard = 1,
