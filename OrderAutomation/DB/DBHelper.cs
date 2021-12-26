@@ -14,11 +14,9 @@ namespace OrderAutomation.DB
         public static IEnumerable<Item> UrunListesiniAl()
         {
             var sp = "usp_GetItemList";
-            using (IDbConnection db = new SqlConnection(DBConnection.STR))
-            {
-                var result = db.Query<Item>(sp, commandType: CommandType.StoredProcedure);
-                return result;
-            }
+            using IDbConnection db = new SqlConnection(DBConnection.STR);
+            var result = db.Query<Item>(sp, commandType: CommandType.StoredProcedure);
+            return result;
         }
 
         internal static void SaveOrder(Order order)
