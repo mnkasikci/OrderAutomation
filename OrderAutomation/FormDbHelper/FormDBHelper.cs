@@ -1,5 +1,6 @@
 ﻿using OrderAutomation.DB;
 using OrderAutomation.Models;
+using OrderAutomation.ViewModels;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -33,5 +34,26 @@ namespace OrderAutomation.FormDbHelper
             }
             return dbResult;
         }
+
+        public static void LoadOrders(this DataGridView orders)
+        {
+            var ordersList= DBHelper.GetOrders();
+            var dataTable = DataTableHelper.CreateDataTable(ordersList);
+            orders.DataSource = dataTable;
+        }
+        public static void LoadItems(this DataGridView items)
+        {
+            var itemsList = DBHelper.GetItems();
+            var dataTable = DataTableHelper.CreateDataTable(itemsList);
+            items.DataSource = dataTable;
+            items.Columns[0].ReadOnly = true;
+        }
+        public static void LoadPayments(this DataGridView payments)
+        {
+            var paymentsList = DBHelper.GetPayments();
+            var dataTable = DataTableHelper.CreateDataTable(paymentsList);
+            payments.DataSource = dataTable;
+        }
+
     }
 }

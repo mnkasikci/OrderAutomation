@@ -10,6 +10,10 @@ namespace OrderAutomation.Views
         public LoginForm()
         {
             InitializeComponent();
+
+            kullaniciAdi.Text = "onur";
+            sifre.Text = "1234";
+            button1_Click(this, null);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -17,18 +21,19 @@ namespace OrderAutomation.Views
             var user = AttemptLogin(kullaniciAdi.Text, sifre.Text);
             if (user != null)
             {
-                Customer customer = user as Customer;
-                Admin admin = user as Admin;
-                if (customer != null)
+                if (user is Customer customer)
                 {
                     Hide();
                     var avEkrani = new AlisVerisEkrani(customer);
                     avEkrani.Closed += (s, args) => this.Close();
                     avEkrani.Show();
                 }
-                else if(admin != null)
+                else if (user is Admin admin)
                 {
-
+                    Hide();
+                    var adminEkrani = new AdminPanel(admin);
+                    adminEkrani.Closed += (s, args) => this.Close();
+                    adminEkrani.Show();
                 }
                 else
                 {
@@ -38,16 +43,11 @@ namespace OrderAutomation.Views
             }
         }
 
-        private User AttemptLogin(string userName, string password)
+        private static User AttemptLogin(string userName, string password)
         {
-            return new Customer()
-            {
-                Id = 2
-            };
-        }
-        private UserType GetKullaniciTipi(string text)
-        {
-            return UserType.Customer;
+            var user = DB.DBHelper.AttemptLogin(userName, password);
+            return user;
+            
         }
     }
 }

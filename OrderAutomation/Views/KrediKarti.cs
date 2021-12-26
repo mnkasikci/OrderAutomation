@@ -80,8 +80,8 @@ namespace OrderAutomation.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var expDateString = comboBox1.SelectedValue.ToString() + comboBox2.SelectedValue.ToString();
-            Credit credit = new Credit(_order, kartNoTextBox.ToString(), adSoyad.ToString(), expDateString);
+            var expDateString = comboBox1.AccessibilityObject.Value.ToString() + comboBox2.AccessibilityObject.Value.ToString();
+            Credit credit = new Credit(_order, kartNoTextBox.Text.ToString(), adSoyad.Text.ToString(), expDateString);
             credit.ProcessPayment();
             MessageBox.Show("Kredi Kartı ile Ödeme Gerçekleşti", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Hide();
