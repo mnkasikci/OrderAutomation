@@ -11,9 +11,7 @@ namespace OrderAutomation.Views
         {
             InitializeComponent();
 
-            kullaniciAdi.Text = "onur";
-            sifre.Text = "1234";
-            button1_Click(this, null);
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
