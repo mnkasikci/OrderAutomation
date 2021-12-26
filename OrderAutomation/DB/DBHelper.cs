@@ -62,9 +62,10 @@ namespace OrderAutomation.DB
         {
             var sp = "usp_SaveCheckPayment";
             DynamicParameters dp = new();
+            dp.Add("CustomerId", check.Order.Customer.Id);
             dp.Add("BankId", check.BankId);
             dp.Add("Name", check.Name);
-            dp.Add("Id", check.Order.Id);
+            dp.Add("OrderId", check.Order.Id);
 
             using IDbConnection db = new SqlConnection(DBConnection.STR);
             db.Execute(sp, dp, commandType: CommandType.StoredProcedure);
@@ -74,11 +75,11 @@ namespace OrderAutomation.DB
             var sp = "usp_SaveCreditCardPayment";
 
             DynamicParameters dp = new();
+            dp.Add("CustomerId", credit.Order.Customer.Id);
             dp.Add("CardNumber", credit.CardNumber);
             dp.Add("ExpDate", credit.ExpDate);
-            dp.Add("ExpDate", credit.ExpDate);
             dp.Add("NameOnCard", credit.NameOnCard);
-            dp.Add("Id", credit.Order.Id);
+            dp.Add("OrderId", credit.Order.Id);
 
             using IDbConnection db = new SqlConnection(DBConnection.STR);
             db.Execute(sp, dp, commandType: CommandType.StoredProcedure);
@@ -88,8 +89,10 @@ namespace OrderAutomation.DB
         internal static void SavePayment(Cash cash)
         {
             var sp = "usp_SaveCashPayment";
+
             DynamicParameters dp = new();
-            dp.Add("Id",cash.Order.Id);
+            dp.Add("CustomerId", cash.Order.Customer.Id);
+            dp.Add("OrderId", cash.Order.Id);
             dp.Add("CashTendered", cash.CashTendered);
             dp.Add("Change", cash.Change);
 

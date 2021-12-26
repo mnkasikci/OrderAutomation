@@ -36,6 +36,10 @@ namespace OrderAutomation.Views
             Cash cash = new Cash(_order,enteredAmount);
             cash.ProcessPayment();
             MessageBox.Show("Nakit Ödeme Gerçekleşti", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Hide();
+            var avEkrani = new AlisVerisEkrani(_order.Customer);
+            avEkrani.Show();
+            avEkrani.FormClosed += (s, args) => this.Close();
         }
     }
 }

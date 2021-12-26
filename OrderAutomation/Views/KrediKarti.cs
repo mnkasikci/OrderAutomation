@@ -84,6 +84,10 @@ namespace OrderAutomation.Views
             Credit credit = new Credit(_order, kartNoTextBox.ToString(), adSoyad.ToString(), expDateString);
             credit.ProcessPayment();
             MessageBox.Show("Kredi Kartı ile Ödeme Gerçekleşti", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Hide();
+            var avEkrani = new AlisVerisEkrani(_order.Customer);
+            avEkrani.Show();
+            avEkrani.FormClosed += (s, args) => this.Close();
         }
 
         private void textBox2_Leave(object sender, EventArgs e)

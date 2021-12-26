@@ -21,7 +21,7 @@ namespace OrderAutomation.Views
                 Admin admin = user as Admin;
                 if (customer != null)
                 {
-                    this.Hide();
+                    Hide();
                     var avEkrani = new AlisVerisEkrani(customer);
                     avEkrani.Closed += (s, args) => this.Close();
                     avEkrani.Show();

@@ -12,6 +12,7 @@ namespace OrderAutomation.Views
         {
             InitializeComponent();
             _order = order;
+            button1.Enabled = false;
         }
 
 
@@ -21,7 +22,10 @@ namespace OrderAutomation.Views
             Check check = new(_order, nameTextBox.Text, bankIdTextBox.Text);
             check.ProcessPayment();
             MessageBox.Show("Çek ile Ödeme Gerçekleşti", "Başarılı", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            Hide();
+            var avEkrani= new AlisVerisEkrani(_order.Customer);
+            avEkrani.Closed += (s, args) => this.Close();
+            avEkrani.Show();
         }
 
         private void nameTextBox_TextChanged(object sender, EventArgs e)
